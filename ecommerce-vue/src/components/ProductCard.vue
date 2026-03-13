@@ -1,20 +1,41 @@
 <template>
-  <div class="product-card">
-    <div class="product-badge">{{ product.category.name }}</div>
-    <h2 class="product-name">{{ product.name }}</h2>
-    <p class="product-price">R$ {{ product.price.toFixed(2) }}</p>
-    <button class="btn-add" @click="$emit('add-to-cart', product)">
-      + Adicionar ao Carrinho
-    </button>
-  </div>
+  <Card class="rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700">
+    <template #content>
+      <div class="flex flex-col gap-4 p-4">
+        <span class="w-fit rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-sky-700 dark:bg-sky-900/30 dark:text-sky-300">
+          {{ product.category.name }}
+        </span>
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">
+          {{ product.name }}
+        </h3>
+        <p class="text-2xl font-black text-emerald-600 dark:text-emerald-400">
+          R$ {{ product.price.toFixed(2) }}
+        </p>
+        <Button
+          label="Adicionar ao carrinho"
+          icon="pi pi-cart-plus"
+          class="mt-2"
+          severity="contrast"
+          @click="$emit('add-to-cart', product)"
+        />
+      </div>
+    </template>
+  </Card>
 </template>
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
+import Card from 'primevue/card';
+import Button from 'primevue/button';
 import type { Product } from '../models/Product';
 
 export default defineComponent({
   name: 'ProductCard',
+
+  components: {
+    Card,
+    Button,
+  },
 
   props: {
     product: {
@@ -26,65 +47,3 @@ export default defineComponent({
   emits: ['add-to-cart'],
 });
 </script>
-
-<style scoped>
-.product-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.13);
-}
-
-.product-badge {
-  display: inline-block;
-  background: #e8f0fe;
-  color: #3b5bdb;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  align-self: flex-start;
-}
-
-.product-name {
-  margin: 0;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #1a1a2e;
-}
-
-.product-price {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #2f9e44;
-}
-
-.btn-add {
-  margin-top: auto;
-  padding: 0.55rem 1rem;
-  background: #3b5bdb;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn-add:hover {
-  background: #2f4ac4;
-}
-</style>
