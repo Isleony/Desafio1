@@ -1,6 +1,6 @@
 <template>
   <div class="product-card">
-    <div class="product-badge">{{ product.category.title }}</div>
+    <div class="product-badge">{{ product.category.name }}</div>
     <h2 class="product-name">{{ product.name }}</h2>
     <p class="product-price">R$ {{ product.price.toFixed(2) }}</p>
     <button class="btn-add" @click="$emit('add-to-cart', product)">

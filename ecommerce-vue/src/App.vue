@@ -5,7 +5,7 @@
       <h1>🛒 Vue Shop</h1>
       <div class="cart-badge">
         Carrinho
-        <span class="badge">{{ cart.totalUnits }}</span>
+        <span class="badge">{{ cart.getTotalItems() }}</span>
       </div>
     </header>
 
@@ -30,11 +30,11 @@
         <div class="cart-totals">
           <div class="total-row">
             <span>Total de itens:</span>
-            <strong>{{ cart.totalUnits }}</strong>
+            <strong>{{ cart.getTotalItems() }}</strong>
           </div>
           <div class="total-row">
             <span>Preço Final:</span>
-            <strong class="price-final">R$ {{ cart.totalPrice.toFixed(2) }}</strong>
+            <strong class="price-final">R$ {{ cart.getFinalPrice().toFixed(2) }}</strong>
           </div>
         </div>
 
@@ -94,37 +94,37 @@ export default defineComponent({
           id: 1,
           name: 'Notebook Gamer Pro',
           price: 4999.99,
-          category: { id: 1, title: 'Informática' },
+          category: { id: 1, name: 'Informática' },
         },
         {
           id: 2,
           name: 'Teclado Mecânico RGB',
           price: 349.9,
-          category: { id: 1, title: 'Informática' },
+          category: { id: 1, name: 'Informática' },
         },
         {
           id: 3,
           name: 'Mouse Sem Fio',
           price: 189.9,
-          category: { id: 1, title: 'Informática' },
+          category: { id: 1, name: 'Informática' },
         },
         {
           id: 4,
           name: 'Tênis Running Ultra',
           price: 299.0,
-          category: { id: 2, title: 'Esportes' },
+          category: { id: 2, name: 'Esportes' },
         },
         {
           id: 5,
           name: 'Mochila Resistente 30L',
           price: 159.9,
-          category: { id: 3, title: 'Acessórios' },
+          category: { id: 3, name: 'Acessórios' },
         },
         {
           id: 6,
           name: 'Fone Bluetooth Over-Ear',
           price: 429.0,
-          category: { id: 4, title: 'Áudio' },
+          category: { id: 4, name: 'Áudio' },
         },
       ] as Product[],
     };
